@@ -203,4 +203,3 @@ The required bearing area is calculated using:
 Required Area = Design Thrust ÷ Safe Bearing Capacity
 
 ---
-
