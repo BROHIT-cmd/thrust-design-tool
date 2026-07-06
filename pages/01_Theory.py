@@ -436,10 +436,6 @@ If this condition is not satisfied:
 
 # 21. Risk Assessment Philosophy
 
-st.markdown("""
-
-Risk Assessment
-
 Risk assessment helps us understand:
 
 1. How likely the system is to fail
@@ -611,7 +607,6 @@ Design improvement recommended.
 
 Design is not acceptable and must be redesigned.
 
-""")
 
 # 22. Potential Failure Modes
 
