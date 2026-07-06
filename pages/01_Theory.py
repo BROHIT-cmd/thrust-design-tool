@@ -436,39 +436,182 @@ If this condition is not satisfied:
 
 # 21. Risk Assessment Philosophy
 
-The application classifies risks according to safety factors.
+st.markdown("""
 
-LOW
+# Risk Assessment
 
-FS > 2.0
+Risk assessment helps us understand:
 
-Safe design.
+1. How likely the system is to fail
+2. What happens if it fails
 
----
-
-MEDIUM
-
-1.5 ≤ FS < 2.0
-
-Acceptable but should be reviewed.
+The tool uses both of these to determine the overall risk level.
 
 ---
 
-HIGH
+# Why Risk Assessment is Important
 
-1.0 ≤ FS < 1.5
+Even if a design passes the calculations, failure can still occur due to:
 
-Engineering review required.
+- Poor soil conditions
+- Construction errors
+- Higher operating pressure
+- Water hammer
+- Settlement
+- Incorrect installation
+
+Therefore risk should always be considered.
 
 ---
 
-EXTREME
+# Common Risks
 
-FS < 1.0
+## Buried Pipeline
 
-Design unacceptable.
+Possible problems:
+
+- Thrust block too small
+- Pipe movement
+- Joint separation
+- Leakage
 
 ---
+
+## Valve Chamber / SFA Chamber
+
+Possible problems:
+
+- Support block movement
+- Chamber sliding
+- Chamber cracking
+- Flow meter misalignment
+- Valve damage
+
+---
+
+# Risk Levels
+
+## LOW
+
+✅ Design is safe
+
+The support has enough capacity.
+
+No major concerns.
+
+Example:
+
+Factor of Safety > 2.0
+
+---
+
+## MEDIUM
+
+⚠ Design is acceptable
+
+However, engineering review is recommended.
+
+Example:
+
+Factor of Safety between 1.5 and 2.0
+
+---
+
+## HIGH
+
+⚠ Design may not be reliable
+
+Changes should be considered.
+
+Example:
+
+Factor of Safety between 1.0 and 1.5
+
+Possible consequences:
+
+- Pipe movement
+- Leakage
+- Structural damage
+
+---
+
+## EXTREME
+
+❌ Design is unsafe
+
+Redesign is required.
+
+Example:
+
+Factor of Safety less than 1.0
+
+Failure is likely.
+
+---
+
+# Consequences of Failure
+
+If the thrust restraint system fails, the following may happen:
+
+### Mechanical Problems
+
+- Pipe movement
+- Coupling pull-out
+- Flange leakage
+- Valve damage
+
+### Structural Problems
+
+- Cracked concrete
+- Chamber movement
+- Slab damage
+
+### Operational Problems
+
+- Water leakage
+- Service interruption
+- Emergency repairs
+
+---
+
+# How Risk Can Be Reduced
+
+The risk can be reduced by:
+
+- Increasing thrust block size
+- Increasing support size
+- Increasing foundation area
+- Improving soil conditions
+- Using restrained joints
+- Increasing safety factor
+
+---
+
+# Final Risk Decision
+
+🟢 LOW
+
+Safe for normal operation.
+
+---
+
+🟡 MEDIUM
+
+Acceptable but review recommended.
+
+---
+
+🟠 HIGH
+
+Design improvement recommended.
+
+---
+
+🔴 EXTREME
+
+Design is not acceptable and must be redesigned.
+
+""")
 
 # 22. Potential Failure Modes
 
