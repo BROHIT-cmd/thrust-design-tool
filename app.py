@@ -8,15 +8,15 @@ st.set_page_config(
 st.title("Pipeline Thrust Restraint Designer")
 
 st.markdown("""
-### Modules
+### Available Modules
 
-✅ Buried Thrust Block
+✅ Theory & Design Basis
 
-✅ SFA Chamber Support
+✅ Buried Thrust Block Design
 
-✅ Valve Chamber Anchor Block
+✅ SFA / Valve Chamber Support Design
 
 ✅ Risk Assessment
 
-✅ Design Theory
+Use the navigation menu on the left.
 """)
