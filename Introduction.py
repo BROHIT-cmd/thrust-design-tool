@@ -29,7 +29,7 @@ with col2:
         pass
 
 st.caption(
-    "Preliminary Engineering Design Tool for Pipeline Thrust Restraint Systems"
+    "Preliminary Engineering Design Tool for Pipeline Thrust block design"
 )
 
 # =====================================================
@@ -40,7 +40,7 @@ st.markdown("""
 ## Welcome
 
 The **Pipeline Thrust Block Designer** has been developed to assist engineers in the
-preliminary design and sizing of pipeline thrust restraint systems.
+preliminary design and sizing of pipeline thrust block.
 
 The application provides tools for:
 
