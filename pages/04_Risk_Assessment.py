@@ -338,20 +338,19 @@ Total Risk Score: {total_score}
 # DISCLAIMER
 # =====================================================
 
-st.warning(
-    """
-This assessment is intended for preliminary engineering review only.
+# 24. Disclaimer
 
-Final design should be verified using:
+This tool is intended for: Preliminary design only. Results should be verified against project specifications, geotechnical data, and applicable standards before construction.
 
-• Project Specifications
+✅ Preliminary Design
 
-• Geotechnical Reports
+✅ Concept Design
 
-• Surge Analysis
+✅ Budget Estimating
 
-• Civil & Structural Design Checks
+✅ Design Review
 
-• Utility Standards
-"""
-)
+✅ Engineering Verification
+
+Final designs must always be reviewed by qualified Mechanical, Civil and Geotechnical Engineers and verified against project specifications and local standards.
+""")
