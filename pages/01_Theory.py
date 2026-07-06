@@ -659,7 +659,7 @@ SFA Chamber Module:
 
 # 24. Disclaimer
 
-st.warning("""This tool is intended for: Preliminary design only. Results should be verified against project specifications, geotechnical data, and applicable standards before construction.
+This tool is intended for: Preliminary design only. Results should be verified against project specifications, geotechnical data, and applicable standards before construction.
 
 ✅ Preliminary Design
 
