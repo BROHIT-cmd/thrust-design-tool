@@ -1,23 +1,20 @@
 import streamlit as st
 
-from modules.soil import SOIL_DATABASE
-from modules.designer import (
-    bend_thrust,
-    design_chamber_support
-)
+from modules.designer import bend_thrust
+from modules.chamber_support import support_block_design
 
 st.set_page_config(
     page_title="SFA Chamber Support Designer",
     layout="wide"
 )
 
-st.title("🏗 SFA / Flow Meter Chamber Support Designer")
+st.title("🏗 SFA Chamber Support Designer")
 
 st.markdown("""
-This tool automatically determines a suitable support block size
-for a pipe bend inside an SFA or valve chamber.
+This tool sizes a concrete support block that transfers
+hydraulic thrust from a pipe bend into the chamber slab.
 
-### Assumed Load Path
+Load Path:
 
 Water Pressure
 
@@ -38,26 +35,22 @@ Base Slab
 Foundation Soil
 """)
 
-# Inputs
-
 col1, col2 = st.columns(2)
 
 with col1:
 
-    dn = st.number_input(
+    diameter = st.number_input(
         "Pipe Diameter (mm)",
         min_value=100,
         max_value=3000,
-        value=600,
-        step=50
+        value=600
     )
 
     pressure = st.number_input(
         "Pressure (bar)",
         min_value=1.0,
         max_value=40.0,
-        value=10.0,
-        step=0.5
+        value=10.0
     )
 
 with col2:
@@ -68,121 +61,77 @@ with col2:
         index=2
     )
 
-    soil = st.selectbox(
-        "Soil Type",
-        list(SOIL_DATABASE.keys())
+    allowable_bearing = st.number_input(
+        "Allowable Bearing Pressure (kN/m²)",
+        value=500
     )
 
-st.divider()
-
-if st.button("🚀 Design Support Block", use_container_width=True):
+if st.button("Design Support Block"):
 
     thrust = bend_thrust(
-        diameter_mm=dn,
+        diameter_mm=diameter,
         pressure_bar=pressure,
         angle_deg=angle
     )
 
-    mu = SOIL_DATABASE[soil]["mu"]
-
-    support = design_chamber_support(
+    result = support_block_design(
         thrust_kn=thrust,
-        friction_coeff=mu
+        allowable_bearing=allowable_bearing
     )
 
     st.subheader("Results")
 
-    left, right = st.columns(2)
+    st.metric(
+        "Hydraulic Thrust (kN)",
+        result["thrust"]
+    )
 
-    with left:
+    st.metric(
+        "Required Bearing Area (m²)",
+        result["required_area"]
+    )
 
-        st.metric(
-            "Hydraulic Thrust (kN)",
-            f"{thrust:.2f}"
-        )
+    st.subheader("Recommended Concrete Support Block")
 
-        st.metric(
-            "Soil Friction Coefficient",
-            f"{mu:.2f}"
-        )
+    col1, col2, col3 = st.columns(3)
 
-    with right:
+    col1.metric(
+        "Length (m)",
+        result["length"]
+    )
 
-        st.metric(
-            "Risk Level",
-            "LOW" if support else "HIGH"
-        )
+    col2.metric(
+        "Width (m)",
+        result["width"]
+    )
 
-        st.metric(
-            "Status",
-            "SAFE ✅" if support else "NOT SAFE ❌"
-        )
+    col3.metric(
+        "Height (m)",
+        result["height"]
+    )
 
-    st.divider()
+    st.metric(
+        "Concrete Volume (m³)",
+        result["volume"]
+    )
 
-    if support:
+    st.success(
+        "Recommended preliminary support block size generated."
+    )
 
-        st.subheader("Recommended Support Block")
+st.info("""
+Assumptions:
 
-        c1, c2, c3 = st.columns(3)
+• Support block transfers thrust into chamber slab.
 
-        c1.metric(
-            "Length (m)",
-            support["length"]
-        )
+• Chamber slab and surrounding structure resist the load.
 
-        c2.metric(
-            "Width (m)",
-            support["width"]
-        )
+• Preliminary sizing only.
 
-        c3.metric(
-            "Height (m)",
-            support["height"]
-        )
-
-        st.metric(
-            "Concrete Volume (m³)",
-            support["volume"]
-        )
-
-        st.metric(
-            "Concrete Weight (kN)",
-            support["weight"]
-        )
-
-        st.metric(
-            "Sliding Factor of Safety",
-            support["sliding_fs"]
-        )
-
-        st.success(
-            "Minimum safe support block identified."
-        )
-
-    else:
-
-        st.error(
-            "No support block found within search limits. "
-            "Increase block dimensions or revise assumptions."
-        )
-
-st.divider()
-
-st.info(
-    """
-    Notes:
-
-    • Preliminary design tool only.
-
-    • Actual chamber design should verify:
-      - Sliding
-      - Overturning
-      - Base slab capacity
-      - Passive soil resistance
-      - Reinforcement
-
-    • Final design should be reviewed by Mechanical,
-      Civil and Geotechnical Engineers.
-    """
-)
+• Final design should verify:
+  - Slab reinforcement
+  - Local bearing stress
+  - Punching shear
+  - Chamber stability
+  - Soil bearing capacity
+""")
