@@ -93,7 +93,7 @@ or
 
 ## Available Modules
 
-### 📚 Theory & Design Basis
+### 📚 Theory
 
 Provides background information on:
 
