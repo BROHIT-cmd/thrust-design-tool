@@ -353,3 +353,4 @@ st.warning("""This tool is intended for: Preliminary design only. Results should
 ✅ Engineering Verification
 
 Final designs must always be reviewed by qualified Mechanical, Civil and Geotechnical Engineers and verified against project specifications and local standards.
+""")
