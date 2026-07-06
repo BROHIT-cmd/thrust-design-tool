@@ -7,17 +7,17 @@ from modules.buried import design_thrust_block
 st.title("🌍 Buried Thrust Block Designer")
 
 diameter = st.number_input(
-    "Pipe Diameter (mm)",
-    100,
-    3000,
-    600
+        "Pipe Diameter (mm)",
+        min_value=100,
+        max_value=3000,
+        value=800
 )
-
 pressure = st.number_input(
     "Pressure (bar)",
-    1.0,
-    40.0,
-    10.0
+        min_value=1.0,
+        max_value=40.0,
+        value=10.0
+
 )
 
 angle = st.selectbox(
@@ -37,6 +37,28 @@ sf = st.selectbox(
     [1.25, 1.5, 2.0],
     index=1
 )
+
+water_hammer_option = st.selectbox(
+    "Water Hammer Condition",
+    [
+        "None",
+        "Mild Surge (+10%)",
+        "Moderate Surge (+20%)",
+        "Severe Surge (+30%)"
+    ],
+    index=1
+)
+
+WATER_HAMMER_FACTOR = {
+    "None": 1.00,
+    "Mild Surge (+10%)": 1.10,
+    "Moderate Surge (+20%)": 1.20,
+    "Severe Surge (+30%)": 1.30
+}
+
+hammer_factor = WATER_HAMMER_FACTOR[
+    water_hammer_option
+]
 
 if st.button("Design Thrust Block"):
 
