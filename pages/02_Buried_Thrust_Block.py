@@ -9,7 +9,7 @@ from modules.buried import design_thrust_block
 # ---------------------------------------------------------
 
 st.set_page_config(
-    page_title="Buried Thrust Block Designer",
+    page_title="Buried Pipework Thrust Block Designer",
     page_icon="📦",
     layout="wide"
 )
@@ -21,7 +21,7 @@ st.set_page_config(
 col1, col2 = st.columns([6, 1])
 
 with col1:
-    st.title("🌍 Buried Thrust Block Designer")
+    st.title("📦 Buried Pipework Thrust Block Designer")
 
 with col2:
     try:
