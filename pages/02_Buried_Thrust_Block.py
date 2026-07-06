@@ -22,7 +22,7 @@ pressure = st.number_input(
 
 angle = st.selectbox(
     "Bend Angle",
-    [22.5, 45, 90]
+    [11.25, 22.5, 45, 90]
 )
 
 soil = st.selectbox(
