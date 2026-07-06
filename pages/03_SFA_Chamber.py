@@ -320,49 +320,6 @@ if st.button(
     )
 
     # =================================================
-    # SKETCH
-    # =================================================
-
-    st.header("Support Block Sketch")
-
-    fig, ax = plt.subplots(
-        figsize=(5, 4)
-    )
-
-    ax.add_patch(
-        plt.Rectangle(
-            (1, 1),
-            2,
-            1,
-            fill=False
-        )
-    )
-
-    ax.text(
-        2,
-        1.5,
-        "SUPPORT\nBLOCK",
-        ha="center"
-    )
-
-    ax.plot(
-        [2, 2],
-        [2, 3],
-        linewidth=5
-    )
-
-    ax.text(
-        2,
-        3.2,
-        "PIPE",
-        ha="center"
-    )
-
-    ax.axis("off")
-
-    st.pyplot(fig)
-
-    # =================================================
     # DOWNLOAD REPORT
     # =================================================
 
