@@ -1,13 +1,12 @@
 import streamlit as st
 
 from modules.soil import SOIL_DATABASE
-from modules.thrust import bend_thrust
-from modules.buried import (
-    required_area,
-    block_size
+from modules.designer import (
+    bend_thrust,
+    design_buried_block
 )
 
-st.title("Buried Thrust Block")
+st.title("🌍 Buried Thrust Block Designer")
 
 dn = st.number_input(
     "Pipe Diameter (mm)",
@@ -33,7 +32,7 @@ soil = st.selectbox(
     list(SOIL_DATABASE.keys())
 )
 
-design = st.selectbox(
+design_basis = st.selectbox(
     "Design Basis",
     [
         "Preliminary",
@@ -44,11 +43,11 @@ design = st.selectbox(
 
 sf_table = {
     "Preliminary": 1.25,
-    "Normal": 1.50,
-    "Critical": 2.00
+    "Normal": 1.5,
+    "Critical": 2.0
 }
 
-if st.button("Calculate"):
+if st.button("Design Block"):
 
     thrust = bend_thrust(
         dn,
@@ -58,24 +57,34 @@ if st.button("Calculate"):
 
     sbc = SOIL_DATABASE[soil]["sbc"]
 
-    sf = sf_table[design]
-
-    area = required_area(
+    result = design_buried_block(
         thrust,
         sbc,
-        sf
+        sf_table[design_basis]
     )
 
-    L, B = block_size(area)
+    st.success("Recommended Thrust Block")
 
-    st.success(
-        f"Thrust Force = {thrust:.2f} kN"
+    st.write(
+        f"Hydraulic Thrust = {result['thrust']} kN"
     )
 
-    st.success(
-        f"Required Area = {area:.2f} m²"
+    st.write(
+        f"Required Area = {result['area']} m²"
     )
 
-    st.success(
-        f"Recommended Block = {L:.2f}m × {B:.2f}m"
+    st.write(
+        f"Length = {result['length']} m"
+    )
+
+    st.write(
+        f"Width = {result['width']} m"
+    )
+
+    st.write(
+        f"Depth = {result['depth']} m"
+    )
+
+    st.write(
+        f"Concrete Volume = {result['volume']} m³"
     )
