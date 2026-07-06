@@ -2,10 +2,6 @@
 
 import streamlit as st
 
-st.set_page_config(
-    page_title="Theory & Design Basis",
-    layout="wide"
-)
 
 st.title("📚 Theory & Design Basis")
 col1, col2 = st.columns([6, 1])
