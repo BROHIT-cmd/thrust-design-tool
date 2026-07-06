@@ -17,7 +17,7 @@ st.set_page_config(
 col1, col2 = st.columns([6, 1])
 
 with col1:
-    st.title("🏗 SFA Chamber Support Designer")
+    st.title("🏗 SFA Chamber Concrete Support Designer")
 
 with col2:
     st.image(
