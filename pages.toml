@@ -1,0 +1,24 @@
+[[pages]]
+path = "app.py"
+name = "Introduction"
+icon = "🏠"
+
+[[pages]]
+path = "pages/01_Theory.py"
+name = "Theory"
+icon = "📚"
+
+[[pages]]
+path = "pages/02_Buried_Thrust_Block.py"
+name = "Buried Thrust Block"
+icon = "🌍"
+
+[[pages]]
+path = "pages/03_SFA_Chamber.py"
+name = "SFA Chamber"
+icon = "🏗"
+
+[[pages]]
+path = "pages/04_Risk_Assessment.py"
+name = "Risk Assessment"
+icon = "⚠️"
