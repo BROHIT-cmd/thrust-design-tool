@@ -409,24 +409,19 @@ Estimated Reinforcement : {steel_weight:.0f} kg
 # DISCLAIMER
 # ---------------------------------------------------------
 
-st.warning("""
-This tool provides preliminary design sizing only.
+# 24. Disclaimer
 
-Final design should verify:
+This tool is intended for: Preliminary design only. Results should be verified against project specifications, geotechnical data, and applicable standards before construction.
 
-• Geotechnical Investigation Results
+✅ Preliminary Design
 
-• Soil Bearing Capacity
+✅ Concept Design
 
-• Construction Constraints
+✅ Budget Estimating
 
-• Hydrostatic Loading
+✅ Design Review
 
-• Water Hammer Analysis
+✅ Engineering Verification
 
-• Project Standards
-
-• Local Regulations
-
-Always verify against project specifications.
+Final designs must always be reviewed by qualified Mechanical, Civil and Geotechnical Engineers and verified against project specifications and local standards.
 """)
