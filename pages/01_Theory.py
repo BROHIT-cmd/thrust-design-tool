@@ -8,6 +8,19 @@ st.set_page_config(
 )
 
 st.title("📚 Theory & Design Basis")
+col1, col2 = st.columns([6, 1])
+
+with col1:
+    st.title("📚 Theory & Design Basis")
+
+with col2:
+    try:
+        st.image(
+            "assets/logo.png",
+            width=120
+        )
+    except:
+        pass
 
 st.markdown("""
 
