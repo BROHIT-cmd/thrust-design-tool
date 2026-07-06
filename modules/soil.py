@@ -22,5 +22,9 @@ SOIL_DATABASE = {
     "Gravel": {
         "sbc": 300,
         "mu": 0.65
+    },
+    "Rock": {
+        "sbc": 1000,
+        "mu": 0.75
     }
 }
