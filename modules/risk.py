@@ -1,6 +1,6 @@
-def risk_rating(fs):
+def risk_level(fs):
 
-    if fs >= 2:
+    if fs > 2:
         return "LOW"
 
     elif fs >= 1.5:
@@ -9,5 +9,4 @@ def risk_rating(fs):
     elif fs >= 1:
         return "HIGH"
 
-    else:
-        return "EXTREME"
+    return "EXTREME"
