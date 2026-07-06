@@ -106,7 +106,7 @@ Provides background information on:
 
 ---
 
-### 🌍 Buried Thrust Block Designer
+### 📦 Buried Thrust Block Designer
 
 Used for buried pipelines where thrust is resisted by the surrounding soil.
 
