@@ -54,7 +54,6 @@ CONCRETE_DATA = {
     ],
     index=1
 )
-}
 
 if st.button(
     "Design Support Block"
