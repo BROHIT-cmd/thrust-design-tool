@@ -1,15 +1,12 @@
 import streamlit as st
 
 from modules.soil import SOIL_DATABASE
-from modules.thrust import bend_thrust
-from modules.chamber import (
-    concrete_volume,
-    concrete_weight,
-    sliding_fs
+from modules.designer import (
+    bend_thrust,
+    design_chamber_support
 )
-from modules.risk import risk_rating
 
-st.title("SFA Chamber Support Design")
+st.title("🏗 SFA Chamber Support Designer")
 
 dn = st.number_input(
     "Pipe Diameter (mm)",
@@ -35,22 +32,7 @@ soil = st.selectbox(
     list(SOIL_DATABASE.keys())
 )
 
-length = st.number_input(
-    "Block Length (m)",
-    value=1.5
-)
-
-width = st.number_input(
-    "Block Width (m)",
-    value=1.5
-)
-
-height = st.number_input(
-    "Block Height (m)",
-    value=1.0
-)
-
-if st.button("Check Design"):
+if st.button("Design Support Block"):
 
     thrust = bend_thrust(
         dn,
@@ -58,30 +40,45 @@ if st.button("Check Design"):
         angle
     )
 
-    volume = concrete_volume(
-        length,
-        width,
-        height
-    )
-
-    weight = concrete_weight(
-        volume
-    )
-
     mu = SOIL_DATABASE[soil]["mu"]
 
-    fs = sliding_fs(
+    support = design_chamber_support(
         thrust,
-        weight,
         mu
     )
 
-    risk = risk_rating(fs)
+    if support:
 
-    st.subheader("Results")
+        st.success(
+            "Recommended Support Block"
+        )
 
-    st.write(f"Hydraulic Thrust : {thrust:.2f} kN")
-    st.write(f"Concrete Volume : {volume:.2f} m³")
-    st.write(f"Block Weight : {weight:.2f} kN")
-    st.write(f"Sliding FOS : {fs:.2f}")
-    st.write(f"Risk Level : {risk}")
+        st.write(
+            f"Hydraulic Thrust = {thrust:.2f} kN"
+        )
+
+        st.write(
+            f"Length = {support['length']} m"
+        )
+
+        st.write(
+            f"Width = {support['width']} m"
+        )
+
+        st.write(
+            f"Height = {support['height']} m"
+        )
+
+        st.write(
+            f"Concrete Volume = {support['volume']} m³"
+        )
+
+        st.write(
+            f"Block Weight = {support['weight']} kN"
+        )
+
+        st.write(
+            f"Sliding FOS = {support['sliding_fs']}"
+        )
+
+        st.success("SAFE")
