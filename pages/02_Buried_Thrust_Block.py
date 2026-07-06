@@ -224,7 +224,6 @@ steel_type = st.selectbox(
     ]
 )
 
-
 # Representative reinforcement densities for estimation
 
 STEEL_DENSITY = {
@@ -276,7 +275,7 @@ if st.button(
 
     steel_weight = (
         concrete_volume
-        * STEEL_DENSITY[STEEL_DENSITY]
+        * STEEL_DENSITY[steel_type]
     )
 
     # -----------------------------------------------------
