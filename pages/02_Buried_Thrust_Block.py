@@ -1,14 +1,12 @@
 import streamlit as st
 
 from modules.soil import SOIL_DATABASE
-from modules.designer import (
-    bend_thrust,
-    design_buried_block
-)
+from modules.thrust import bend_thrust
+from modules.buried import design_thrust_block
 
 st.title("🌍 Buried Thrust Block Designer")
 
-dn = st.number_input(
+diameter = st.number_input(
     "Pipe Diameter (mm)",
     100,
     3000,
@@ -29,62 +27,53 @@ angle = st.selectbox(
 
 soil = st.selectbox(
     "Soil Type",
-    list(SOIL_DATABASE.keys())
+    list(
+        SOIL_DATABASE.keys()
+    )
 )
 
-design_basis = st.selectbox(
-    "Design Basis",
-    [
-        "Preliminary",
-        "Normal",
-        "Critical"
-    ]
+sf = st.selectbox(
+    "Safety Factor",
+    [1.25, 1.5, 2.0],
+    index=1
 )
 
-sf_table = {
-    "Preliminary": 1.25,
-    "Normal": 1.5,
-    "Critical": 2.0
-}
-
-if st.button("Design Block"):
+if st.button("Design Thrust Block"):
 
     thrust = bend_thrust(
-        dn,
+        diameter,
         pressure,
         angle
     )
 
-    sbc = SOIL_DATABASE[soil]["sbc"]
-
-    result = design_buried_block(
+    result = design_thrust_block(
         thrust,
-        sbc,
-        sf_table[design_basis]
+        SOIL_DATABASE[soil],
+        sf
     )
 
-    st.success("Recommended Thrust Block")
-
-    st.write(
-        f"Hydraulic Thrust = {result['thrust']} kN"
+    st.metric(
+        "Hydraulic Thrust (kN)",
+        round(thrust, 2)
     )
 
-    st.write(
-        f"Required Area = {result['area']} m²"
+    st.metric(
+        "Required Area (m²)",
+        result["area"]
     )
 
-    st.write(
-        f"Length = {result['length']} m"
-    )
+    st.success(
+        f"""
+        Recommended Block
 
-    st.write(
-        f"Width = {result['width']} m"
-    )
-
-    st.write(
-        f"Depth = {result['depth']} m"
+        {result['length']} m ×
+        {result['width']} m ×
+        {result['depth']} m
+        """
     )
 
     st.write(
-        f"Concrete Volume = {result['volume']} m³"
+        "Concrete Volume:",
+        result["volume"],
+        "m³"
     )
