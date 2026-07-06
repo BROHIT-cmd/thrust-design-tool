@@ -1,22 +1,28 @@
 import math
 
-def required_area(
-        thrust,
-        sbc,
-        sf):
+def design_thrust_block(
+    thrust,
+    sbc,
+    safety_factor
+):
 
-    return (
+    area = (
         thrust
-        * sf
+        * safety_factor
         / sbc
     )
 
-
-def block_size(area):
-
     side = math.sqrt(area)
 
-    return (
-        round(side, 2),
-        round(side, 2)
-    )
+    side = math.ceil(side * 10) / 10
+
+    return {
+        "area": round(area, 2),
+        "length": side,
+        "width": side,
+        "depth": 1.2,
+        "volume": round(
+            side * side * 1.2,
+            2
+        )
+    }
