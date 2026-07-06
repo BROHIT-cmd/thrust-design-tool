@@ -142,10 +142,12 @@ if st.button("Design Support Block"):
         round(thrust, 2)
     )
 
-    st.metric(
-        "Required Area (m²)",
-        result["area"]
-    )
+
+st.metric(
+    "Required Area (m²)",
+    result["required_area"]
+)
+
 
     st.success(
         f"""
