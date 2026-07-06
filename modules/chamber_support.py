@@ -1,33 +1,53 @@
 import math
 
+CONCRETE_DATA = {
+    "C25/30": {
+        "bearing": 500
+    },
+    "C30/37": {
+        "bearing": 600
+    },
+    "C40/50": {
+        "bearing": 800
+    }
+}
 
-def support_block_design(
-    thrust_kn,
-    allowable_bearing=500,
-    block_height=1.0
+def design_support_block(
+    thrust,
+    concrete_grade
 ):
-    """
-    thrust_kn = hydraulic thrust (kN)
 
-    allowable_bearing = allowable concrete/slab
-    bearing pressure (kN/m²)
+    allowable = (
+        CONCRETE_DATA[
+            concrete_grade
+        ]["bearing"]
+    )
 
-    block_height = assumed block height (m)
-    """
+    required_area = (
+        thrust
+        / allowable
+    )
 
-    required_area = thrust_kn / allowable_bearing
+    side = math.sqrt(
+        required_area
+    )
 
-    side = math.sqrt(required_area)
-
-    side = math.ceil(side * 10) / 10
-
-    volume = side * side * block_height
+    side = math.ceil(
+        side * 10
+    ) / 10
 
     return {
-        "thrust": round(thrust_kn, 2),
-        "required_area": round(required_area, 2),
-        "length": round(side, 2),
-        "width": round(side, 2),
-        "height": round(block_height, 2),
-        "volume": round(volume, 2)
+        "area": round(
+            required_area,
+            2
+        ),
+        "length": side,
+        "width": side,
+        "height": 1.0,
+        "volume": round(
+            side
+            * side
+            * 1.0,
+            2
+        )
     }
