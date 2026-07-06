@@ -1,137 +1,80 @@
 import streamlit as st
 
-from modules.designer import bend_thrust
-from modules.chamber_support import support_block_design
-
-st.set_page_config(
-    page_title="SFA Chamber Support Designer",
-    layout="wide"
+from modules.thrust import bend_thrust
+from modules.chamber_support import (
+    design_support_block
 )
 
-st.title("🏗 SFA Chamber Support Designer")
+st.title(
+    "🏗 SFA Chamber Support Designer"
+)
 
-st.markdown("""
-This tool sizes a concrete support block that transfers
-hydraulic thrust from a pipe bend into the chamber slab.
+diameter = st.number_input(
+    "Pipe Diameter (mm)",
+    100,
+    3000,
+    800
+)
 
-Load Path:
+pressure = st.number_input(
+    "Pressure (bar)",
+    1.0,
+    40.0,
+    16.0
+)
 
-Water Pressure
+angle = st.selectbox(
+    "Bend Angle",
+    [22.5, 45, 90]
+)
 
-↓
+concrete_grade = st.selectbox(
+    "Concrete Grade",
+    [
+        "C25/30",
+        "C30/37",
+        "C40/50"
+    ],
+    index=1
+)
 
-Pipe Bend
-
-↓
-
-Concrete Support Block
-
-↓
-
-Base Slab
-
-↓
-
-Foundation Soil
-""")
-
-col1, col2 = st.columns(2)
-
-with col1:
-
-    diameter = st.number_input(
-        "Pipe Diameter (mm)",
-        min_value=100,
-        max_value=3000,
-        value=600
-    )
-
-    pressure = st.number_input(
-        "Pressure (bar)",
-        min_value=1.0,
-        max_value=40.0,
-        value=10.0
-    )
-
-with col2:
-
-    angle = st.selectbox(
-        "Bend Angle",
-        [22.5, 45, 90],
-        index=2
-    )
-
-    allowable_bearing = st.number_input(
-        "Allowable Bearing Pressure (kN/m²)",
-        value=500
-    )
-
-if st.button("Design Support Block"):
+if st.button(
+    "Design Support Block"
+):
 
     thrust = bend_thrust(
-        diameter_mm=diameter,
-        pressure_bar=pressure,
-        angle_deg=angle
+        diameter,
+        pressure,
+        angle
     )
 
-    result = support_block_design(
-        thrust_kn=thrust,
-        allowable_bearing=allowable_bearing
+    result = design_support_block(
+        thrust,
+        concrete_grade
     )
-
-    st.subheader("Results")
 
     st.metric(
         "Hydraulic Thrust (kN)",
-        result["thrust"]
+        round(thrust, 2)
     )
 
     st.metric(
-        "Required Bearing Area (m²)",
-        result["required_area"]
-    )
-
-    st.subheader("Recommended Concrete Support Block")
-
-    col1, col2, col3 = st.columns(3)
-
-    col1.metric(
-        "Length (m)",
-        result["length"]
-    )
-
-    col2.metric(
-        "Width (m)",
-        result["width"]
-    )
-
-    col3.metric(
-        "Height (m)",
-        result["height"]
-    )
-
-    st.metric(
-        "Concrete Volume (m³)",
-        result["volume"]
+        "Required Area (m²)",
+        result["area"]
     )
 
     st.success(
-        "Recommended preliminary support block size generated."
+        f"""
+        Recommended Support Block
+
+        {result['length']} m ×
+        {result['width']} m ×
+        {result['height']} m
+        """
     )
 
-st.info("""
-Assumptions:
-
-• Support block transfers thrust into chamber slab.
-
-• Chamber slab and surrounding structure resist the load.
-
-• Preliminary sizing only.
-
-• Final design should verify:
-  - Slab reinforcement
-  - Local bearing stress
-  - Punching shear
-  - Chamber stability
-  - Soil bearing capacity
-""")
+    st.write(
+        "Volume:",
+        result["volume"],
+        "m³"
+    )
