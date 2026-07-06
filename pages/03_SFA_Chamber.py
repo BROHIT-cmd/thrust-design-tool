@@ -364,22 +364,19 @@ Estimated Reinforcement : {steel_weight:.0f} kg
         mime="text/plain"
     )
 
-st.warning("""
-This tool provides preliminary sizing only.
+# 24. Disclaimer
 
-Final design should verify:
+This tool is intended for: Preliminary design only. Results should be verified against project specifications, geotechnical data, and applicable standards before construction.
 
-• Structural Design
+✅ Preliminary Design
 
-• Reinforcement Design
+✅ Concept Design
 
-• Local Bearing Stresses
+✅ Budget Estimating
 
-• Punching Shear
+✅ Design Review
 
-• RCC Detailing
+✅ Engineering Verification
 
-• Geotechnical Requirements
-
-• Project Specifications
+Final designs must always be reviewed by qualified Mechanical, Civil and Geotechnical Engineers and verified against project specifications and local standards.
 """)
