@@ -44,6 +44,16 @@ CONCRETE_DATA = {
         "bearing": 800,
         "description": "Heavy-duty concrete for critical infrastructure and high loads."
     }
+
+    concrete_grade = st.selectbox(
+    "Concrete Grade",
+    [
+        "C25/30",
+        "C30/37",
+        "C40/50"
+    ],
+    index=1
+)
 }
 
 if st.button(
