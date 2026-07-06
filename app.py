@@ -12,11 +12,9 @@ st.markdown("""
 
 ✅ Theory & Design Basis
 
-✅ Buried Thrust Block Design
+✅ Buried Thrust Block Designer
 
-✅ SFA / Valve Chamber Support Design
+✅ SFA Chamber Support Designer
 
 ✅ Risk Assessment
-
-Use the navigation menu on the left.
 """)
