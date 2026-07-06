@@ -1,33 +1,28 @@
 import streamlit as st
 
-st.title("Risk Assessment")
+st.title("⚠ Risk Assessment")
 
 st.markdown("""
-### Risk Categories
+### LOW
 
-LOW
-- FS > 2.0
-
-MEDIUM
-- FS = 1.5 to 2.0
-
-HIGH
-- FS = 1.0 to 1.5
-
-EXTREME
-- FS < 1.0
+Design is safe.
 
 ---
 
-Potential Risks
+### MEDIUM
 
-✅ Pipe Movement
+Acceptable.
+Engineering review recommended.
 
-✅ Coupling Separation
+---
 
-✅ Chamber Sliding
+### HIGH
 
-✅ Structural Cracking
+Improvement recommended.
 
-✅ Soil Settlement
+---
+
+### EXTREME
+
+Redesign required.
 """)
