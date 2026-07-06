@@ -28,15 +28,23 @@ angle = st.selectbox(
     [22.5, 45, 90]
 )
 
-concrete_grade = st.selectbox(
-    "Concrete Grade",
-    [
-        "C25/30",
-        "C30/37",
-        "C40/50"
-    ],
-    index=1
-)
+CONCRETE_DATA = {
+    "C25/30": {
+        "fck": 25,
+        "bearing": 500,
+        "description": "General purpose concrete for light to moderate loads."
+    },
+    "C30/37": {
+        "fck": 30,
+        "bearing": 600,
+        "description": "Recommended for most flow meter and valve chambers."
+    },
+    "C40/50": {
+        "fck": 40,
+        "bearing": 800,
+        "description": "Heavy-duty concrete for critical infrastructure and high loads."
+    }
+}
 
 if st.button(
     "Design Support Block"
