@@ -235,7 +235,7 @@ STEEL_DENSITY = {
 
 steel_density = STEEL_DENSITY[steel_type]
 
-st.write(f"Selected Reinforcement Density: {steel_density} kg/m³")
+st.write(f"Selected Reinforcement Density: {STEEL_DENSITY} kg/m³")
 
 # ---------------------------------------------------------
 # DESIGN BUTTON
