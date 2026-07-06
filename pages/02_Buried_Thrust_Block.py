@@ -276,7 +276,7 @@ if st.button(
 
     steel_weight = (
         concrete_volume
-        * STEEL_DENSITY[steel_density]
+        * STEEL_DENSITY[STEEL_DENSITY]
     )
 
     # -----------------------------------------------------
