@@ -491,3 +491,8 @@ Risk Assessment
 
 The objective is to ensure that all hydraulic forces generated within the pipeline are safely transferred into the surrounding ground without causing movement, joint failure, leakage, or structural damage.
 """)
+
+st.warning("""
+⚠️ Preliminary design tool only. Results should be verified against project specifications, geotechnical data, and applicable standards before construction.
+""")
+
