@@ -306,7 +306,7 @@ if st.button(
 
     d4.metric(
         "Required Area",
-        f"{result['Required_area']:.2f} m²"
+        f"{result.get('required_area', 0):.2f} m²"
     )
 
     d5.metric(
@@ -383,7 +383,7 @@ Hydraulic Thrust : {thrust:.2f} kN
 
 Design Thrust : {design_thrust:.2f} kN
 
-Required Area : {result['Required_area']} m²
+Required Area : {result.get('required_area', 0)} m²
 
 Recommended Block
 
